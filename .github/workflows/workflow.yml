@@ -1,29 +1,27 @@
 name: Build and Push to Docker Hub
+
 on:
- push:
+  push:
     branches:
-      - master  # Runs when changes are pushed to main branch
+      - master  # Runs when changes are pushed to the master branch
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 8
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '23'
-
-      - name: Compile Java Code
-        run: javac HelloWorld.java
-
+      # Step 2: Log in to Docker Hub
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
+      # Step 3: Build Docker Image (Dockerfile will handle the compilation)
       - name: Build Docker Image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/hello-world .
 
+      # Step 4: Push Docker Image
       - name: Push Docker Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/hello-world
