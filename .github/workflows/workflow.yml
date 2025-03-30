@@ -1,6 +1,6 @@
 name: Build and Push to Docker Hub
 on:
-  push:
+ push:
     branches:
       - main  # Runs when changes are pushed to main branch
 jobs:
