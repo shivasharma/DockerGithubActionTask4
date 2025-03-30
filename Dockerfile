@@ -3,10 +3,8 @@ FROM openjdk:23
 
 # Set the working directory to /app
 WORKDIR /app
-
 # Copy the HelloWorld.java file into the container's /app directory
 COPY src/HelloWorld.java /app
-
 # Compile the Java file inside the container
 RUN javac HelloWorld.java
 
