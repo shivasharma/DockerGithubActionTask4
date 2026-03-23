@@ -1,5 +1,5 @@
 # Use openjdk base image
-FROM openjdk:23
+FROM amazoncorretto:latest
 
 # Set the working directory to /app
 WORKDIR /app
